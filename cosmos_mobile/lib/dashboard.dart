@@ -3,29 +3,32 @@ import 'package:flutter_adaptive_layout/flutter_adaptive_layout.dart';
 import 'dynamic_donut_chart.dart';
 
 class DashboardPage extends StatelessWidget {
-  const DashboardPage({super.key});
+  const DashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveLayout(
-      smallBuilder: (context, child) => const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: DashboardContent(),
-      ),
-      mediumBuilder: (context, child) => const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: DashboardContent(),
-      ),
-      largeBuilder: (context, child) => const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: DashboardContent(),
+    return Container(
+      color: const Color(0xFFEAEDF3), // Background color
+      child: AdaptiveLayout(
+        smallBuilder: (context, child) => const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: DashboardContent(),
+        ),
+        mediumBuilder: (context, child) => const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: DashboardContent(),
+        ),
+        largeBuilder: (context, child) => const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: DashboardContent(),
+        ),
       ),
     );
   }
 }
 
 class DashboardContent extends StatelessWidget {
-  const DashboardContent({super.key});
+  const DashboardContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,42 +45,49 @@ class DashboardContent extends StatelessWidget {
                       const Padding(padding: EdgeInsets.all(2)),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 0),
+                          horizontal: 8,
+                          vertical: 0,
+                        ),
                         height: 32,
                         width: 130,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(
-                              color: const Color(0xFF0095FF), width: 1),
+                            color: const Color(0xFF0095FF),
+                            width: 1,
+                          ),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text("This Week"),
-                            const SizedBox(width: 8),
+                            Text("This Week"),
+                            SizedBox(width: 8),
                             Image.asset('assets/icons/dropdown.png'),
                           ],
                         ),
                       ),
                       const Spacer(),
                       Container(
-                          height: 33,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                                color: const Color(0xFF0095FF), width: 1),
-                            borderRadius: BorderRadius.circular(4),
+                        height: 33,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: const Color(0xFF0095FF),
+                            width: 1,
                           ),
-                          child: TextButton(
-                            onPressed: () {},
-                            child: const Center(
-                              child: Text(
-                                'Save',
-                                style: TextStyle(color: Colors.black),
-                              ),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const Center(
+                            child: Text(
+                              'Save',
+                              style: TextStyle(color: Colors.black),
                             ),
-                          )),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -152,9 +162,13 @@ class DashboardContent extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(title,
-                    style: const TextStyle(
-                        fontSize: 14, color: Color(0xFF4D4D4D))),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFF4D4D4D),
+                  ),
+                ),
                 const SizedBox(width: 30),
                 Checkbox(
                   value: false,
@@ -162,14 +176,22 @@ class DashboardContent extends StatelessWidget {
                 ),
               ],
             ),
-            Text(amount,
-                style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF0055BB))),
+            Text(
+              amount,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF0055BB),
+              ),
+            ),
             const SizedBox(height: 8),
-            Text(subtitle,
-                style: const TextStyle(fontSize: 10, color: Color(0xFF4D4D4D))),
+            Text(
+              subtitle,
+              style: const TextStyle(
+                fontSize: 10,
+                color: Color(0xFF4D4D4D),
+              ),
+            ),
           ],
         ),
       ),

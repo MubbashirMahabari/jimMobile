@@ -14,18 +14,17 @@ class _ButtonGroupState extends State<ButtonGroup> {
   Widget build(BuildContext context) {
     return Container(
       color: const Color(0xff0157C8), // Background color
-      padding: const EdgeInsets.all(12.0), // Padding around the buttons
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.only(bottom: 5), // Padding around the buttons
+      child: Container(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildOutlinedButton('Today', true), // "Today" button with dropdown
-            const SizedBox(width: 8), // Add space between buttons
+            const SizedBox(width: 5), // Add space between buttons
             _buildOutlinedButton('Uncontacted'),
-            const SizedBox(width: 8), // Add space between buttons
+            const SizedBox(width: 5), // Add space between buttons
             _buildOutlinedButton('Contacted'),
-            const SizedBox(width: 8), // Add space between buttons
+            const SizedBox(width: 5), // Add space between buttons
             _buildOutlinedButton('Nearest'),
           ],
         ),
@@ -43,10 +42,9 @@ class _ButtonGroupState extends State<ButtonGroup> {
         });
       },
       style: OutlinedButton.styleFrom(
+        padding: EdgeInsets.only(left: 12, right: 12),
         backgroundColor: isSelected ? Colors.white : Colors.transparent,
         side: const BorderSide(color: Colors.white), // Border color
-        padding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Padding
       ),
       child: Row(
         children: [
@@ -54,7 +52,7 @@ class _ButtonGroupState extends State<ButtonGroup> {
             text,
             style: TextStyle(
               fontFamily: 'DMSans',
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w500,
               fontSize: 14,
               color: isSelected
                   ? const Color(0xff0157C8)
