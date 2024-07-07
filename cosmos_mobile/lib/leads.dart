@@ -188,7 +188,7 @@ class _LeadsPageState extends State<LeadsPage> {
                             textAlign: TextAlign.center,
                           ),
                           const Text(
-                            "Call the lead?",
+                            "Call Xianli Kun?",
                             style: TextStyle(
                               fontSize: 20,
                               height: 1.3,
@@ -284,7 +284,6 @@ class _LeadsPageState extends State<LeadsPage> {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> leads = [
       {
-        'id': 1,
         'name': 'Ayesha Khan',
         'service': 'Pool Fencing Installation',
         'location': '15 jayanagar Bangalore',
@@ -292,11 +291,10 @@ class _LeadsPageState extends State<LeadsPage> {
         'longitude': 144.946457,
         'time': '10 Aug, 12:00 pm',
         'status': 'Uncontacted',
-        'distance': '5 km',
-        'timeLeft': '00:00:00',
+        'distance': '5 km', // Placeholder for calculated distance
+        'timeLeft': '00:00:00', // Placeholder for time left
       },
       {
-        'id': 2,
         'name': 'Xianli Kun',
         'service': 'Noise Reduction Fencing',
         'location': '15 Hardware Ln, Melbourne VIC...',
@@ -304,10 +302,31 @@ class _LeadsPageState extends State<LeadsPage> {
         'longitude': 144.963058,
         'time': '10 Aug, 01:30 pm',
         'status': 'Uncontacted',
-        'distance': '10 km',
-        'timeLeft': '01:30:00',
+        'distance': '10 km', // Placeholder for calculated distance
+        'timeLeft': '01:30:00', // Placeholder for time left
       },
-      // Add more leads as needed
+      {
+        'name': 'Charlotte Jones',
+        'service': 'Noise Reduction Fencing',
+        'location': 'Port Melbourne, Victoria 3207...',
+        'latitude': -37.841651,
+        'longitude': 144.938574,
+        'time': '10 Aug, 02:00 pm',
+        'status': 'Uncontacted',
+        'distance': '15 km', // Placeholder for calculated distance
+        'timeLeft': '02:00:00', // Placeholder for time left
+      },
+      {
+        'name': 'Aftab Abdullah',
+        'service': 'Noise Reduction Fencing',
+        'location': 'Port Melbourne, Victoria 3207...',
+        'latitude': -37.841651,
+        'longitude': 144.938574,
+        'time': '10 Aug, 02:00 pm',
+        'status': 'Uncontacted',
+        'distance': '15 km', // Placeholder for calculated distance
+        'timeLeft': '01:00:00', // Placeholder for time left
+      },
     ];
 
     return Scaffold(
