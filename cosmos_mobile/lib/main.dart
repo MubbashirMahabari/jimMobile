@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: _selectedIndex == 1
           ? AppBar(
-              toolbarHeight: 85,
+              toolbarHeight: 65,
               backgroundColor: const Color(0xff0157C8),
               title: Container(
                 child: LeadsAppBar(),

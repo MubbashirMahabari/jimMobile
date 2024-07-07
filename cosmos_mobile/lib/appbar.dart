@@ -20,10 +20,12 @@ AppBar buildAppBar(String title) {
                 const SizedBox(width: 10),
                 Text(
                   title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
+                  style: TextStyle(
+                      fontFamily: 'DMSans',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24,
+                      height: 26,
+                      color: Colors.white),
                 ),
                 const SizedBox(width: 10),
                 Image.asset(
