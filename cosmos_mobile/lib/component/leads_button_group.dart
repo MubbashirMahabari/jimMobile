@@ -16,6 +16,16 @@ class _ButtonGroupState extends State<ButtonGroup> {
       color: const Color(0xff0157C8), // Background color
       padding: EdgeInsets.only(bottom: 5), // Padding around the buttons
       child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xff0157C8),
+              blurRadius: 5,
+              spreadRadius: 2,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

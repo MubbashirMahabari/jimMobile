@@ -2,9 +2,39 @@ import 'package:flutter/material.dart';
 import './component/leads_button_group.dart';
 import 'package:flutter_adaptive_layout/flutter_adaptive_layout.dart';
 import 'component/lead_card.dart';
+import "component/lead_alarm.dart";
 
 class LeadsPage extends StatelessWidget {
   const LeadsPage({super.key});
+
+  Color getTimeLeftColor(String timeLeft) {
+    List<String> parts = timeLeft.split(':');
+    int hours = int.parse(parts[0]);
+    int minutes = int.parse(parts[1]);
+
+    if (hours == 0 && minutes <= 30) {
+      return const Color(0xFFe71d19); // Red for 30 minutes or less
+    } else if (hours == 0 && minutes <= 60) {
+      return const Color(0xFFFFA500); // Orange for 1 hour or less
+    } else if (hours == 0 && minutes <= 90) {
+      return const Color(0xFFFFFF00); // Yellow for 1:30 or less
+    } else {
+      return const Color(0xFF35ba51); // Green for 2 hours or more
+    }
+  }
+
+  List<bool> getAlarmStatus(String timeLeft) {
+    List<String> parts = timeLeft.split(':');
+    int hours = int.parse(parts[0]);
+    int minutes = int.parse(parts[1]);
+
+    return [
+      (hours == 0 && minutes <= 30),
+      (hours == 0 && minutes <= 60),
+      (hours == 0 && minutes <= 90),
+      (hours == 0 && minutes <= 120),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +48,7 @@ class LeadsPage extends StatelessWidget {
         'time': '10 Aug, 12:00 pm',
         'status': 'Uncontacted',
         'distance': '5 km', // Placeholder for calculated distance
-        'timeLeft': '00:10:00', // Placeholder for time left
+        'timeLeft': '00:00:00', // Placeholder for time left
       },
       {
         'name': 'Xianli Kun',
@@ -42,6 +72,17 @@ class LeadsPage extends StatelessWidget {
         'distance': '15 km', // Placeholder for calculated distance
         'timeLeft': '02:00:00', // Placeholder for time left
       },
+      {
+        'name': 'Aftab Abdullah',
+        'service': 'Noise Reduction Fencing',
+        'location': 'Port Melbourne, Victoria 3207...',
+        'latitude': -37.841651,
+        'longitude': 144.938574,
+        'time': '10 Aug, 02:00 pm',
+        'status': 'Uncontacted',
+        'distance': '15 km', // Placeholder for calculated distance
+        'timeLeft': '01:00:00', // Placeholder for time left
+      },
     ];
 
     return Scaffold(
@@ -52,7 +93,7 @@ class LeadsPage extends StatelessWidget {
           child: Column(
             children: [
               const ButtonGroup(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Expanded(
                 child: ListView.builder(
                   itemCount: leads.length,
@@ -74,7 +115,7 @@ class LeadsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24),
                 ),
                 const ButtonGroup(),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Expanded(
                   child: ListView.builder(
                     itemCount: leads.length,
@@ -97,7 +138,7 @@ class LeadsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24),
                 ),
                 const ButtonGroup(),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Expanded(
                   child: ListView.builder(
                     itemCount: leads.length,

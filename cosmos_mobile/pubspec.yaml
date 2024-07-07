@@ -38,6 +38,9 @@ dependencies:
   chopper: ^8.0.1+1
   chopper_generator: ^8.0.1
   get_cli: ^1.8.1
+  alarm: ^3.1.4
+  timezone: ^0.8.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +63,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+    - assets/alarm_sound.mp3
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
