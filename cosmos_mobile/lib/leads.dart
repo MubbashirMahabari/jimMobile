@@ -27,16 +27,16 @@ class _LeadsPageState extends State<LeadsPage> {
       // Determine which alarm is ringing and show the corresponding dialog
       switch (alarmSettings.id) {
         case 1:
-          _showCustomDialog(1, 1, "5 seconds");
+          _showCustomDialog(1, 1, "30 min");
           break;
         case 2:
-          _showCustomDialog(2, 2, "40 seconds");
+          _showCustomDialog(2, 2, "60 min");
           break;
         case 3:
-          _showCustomDialog(3, 3, "75 seconds");
+          _showCustomDialog(3, 3, "90 min");
           break;
         case 4:
-          _showCustomDialog(4, 4, "110 seconds");
+          _showCustomDialog(4, 4, "120 min");
           break;
       }
     });
