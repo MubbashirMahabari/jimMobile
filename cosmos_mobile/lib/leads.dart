@@ -63,12 +63,19 @@ class _LeadsPageState extends State<LeadsPage> {
     int hours = int.parse(parts[0]);
     int minutes = int.parse(parts[1]);
 
-    return [
-      (hours == 0 && minutes <= 30),
-      (hours == 0 && minutes <= 60),
-      (hours == 0 && minutes <= 90),
-      (hours == 0 && minutes <= 120),
-    ];
+    if (hours >= 2 && minutes == 0) {
+      return [false, false, false, false];
+    } else if (hours == 1 && minutes == 30) {
+      return [true, false, false, false];
+    } else if (hours == 1 && minutes == 0) {
+      return [true, true, false, false];
+    } else if (hours == 0 && minutes == 30) {
+      return [true, true, true, false];
+    } else if (hours == 0 && minutes == 0) {
+      return [true, true, true, true];
+    } else {
+      return [false, false, false, false];
+    }
   }
 
   static Future<void> _setAlarm(int id, DateTime dateTime) async {
@@ -306,17 +313,6 @@ class _LeadsPageState extends State<LeadsPage> {
         'timeLeft': '01:30:00', // Placeholder for time left
       },
       {
-        'name': 'Charlotte Jones',
-        'service': 'Noise Reduction Fencing',
-        'location': 'Port Melbourne, Victoria 3207...',
-        'latitude': -37.841651,
-        'longitude': 144.938574,
-        'time': '10 Aug, 02:00 pm',
-        'status': 'Uncontacted',
-        'distance': '15 km', // Placeholder for calculated distance
-        'timeLeft': '02:00:00', // Placeholder for time left
-      },
-      {
         'name': 'Aftab Abdullah',
         'service': 'Noise Reduction Fencing',
         'location': 'Port Melbourne, Victoria 3207...',
@@ -326,6 +322,17 @@ class _LeadsPageState extends State<LeadsPage> {
         'status': 'Uncontacted',
         'distance': '15 km', // Placeholder for calculated distance
         'timeLeft': '01:00:00', // Placeholder for time left
+      },
+      {
+        'name': 'Charlotte Jones',
+        'service': 'Noise Reduction Fencing',
+        'location': 'Port Melbourne, Victoria 3207...',
+        'latitude': -37.841651,
+        'longitude': 144.938574,
+        'time': '10 Aug, 02:00 pm',
+        'status': 'Uncontacted',
+        'distance': '15 km', // Placeholder for calculated distance
+        'timeLeft': '02:00:00', // Placeholder for time left
       },
     ];
 
@@ -428,17 +435,37 @@ class LeadCard extends StatelessWidget {
     required this.stopAllAlarms,
   });
 
+  // List<bool> getAlarmStatus(String timeLeft) {
+  //   List<String> parts = timeLeft.split(':');
+  //   int hours = int.parse(parts[0]);
+  //   int minutes = int.parse(parts[1]);
+
+  //   return [
+  //     (hours == 0 && minutes <= 30),
+  //     (hours == 0 && minutes <= 60),
+  //     (hours == 0 && minutes <= 90),
+  //     (hours == 0 && minutes <= 120),
+  //   ];
+  // }
+
   List<bool> getAlarmStatus(String timeLeft) {
     List<String> parts = timeLeft.split(':');
     int hours = int.parse(parts[0]);
     int minutes = int.parse(parts[1]);
 
-    return [
-      (hours == 0 && minutes <= 30),
-      (hours == 0 && minutes <= 60),
-      (hours == 0 && minutes <= 90),
-      (hours == 0 && minutes <= 120),
-    ];
+    if (hours >= 2 && minutes == 0) {
+      return [false, false, false, false];
+    } else if (hours == 1 && minutes == 30) {
+      return [true, false, false, false];
+    } else if (hours == 1 && minutes == 0) {
+      return [true, true, false, false];
+    } else if (hours == 0 && minutes == 30) {
+      return [true, true, true, false];
+    } else if (hours == 0 && minutes == 0) {
+      return [true, true, true, true];
+    } else {
+      return [false, false, false, false];
+    }
   }
 
   @override
@@ -455,7 +482,7 @@ class LeadCard extends StatelessWidget {
         color: const Color(0xFFeff4f8),
         child: Padding(
           padding:
-              const EdgeInsets.only(bottom: 15, top: 5, right: 10, left: 15),
+              const EdgeInsets.only(bottom: 15, top: 5, right: 10, left: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -680,7 +707,7 @@ class LeadCard extends StatelessWidget {
                   const SizedBox(width: 5),
                   Container(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+                        const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -737,73 +764,86 @@ class LeadCard extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                alarms[0]
-                                    ? const Image(
-                                        image: AssetImage(
-                                            'assets/icons/al-30.png'),
-                                        width: 18,
-                                        height: 18,
-                                      )
-                                    : Container(
-                                        width: 5,
-                                        height: 5,
-                                        decoration: BoxDecoration(
-                                          color: getTimeLeftColor(
-                                              lead['timeLeft']),
-                                          shape: BoxShape.circle,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 3.0),
+                                  child: alarms[0]
+                                      ? const Image(
+                                          image: AssetImage(
+                                              'assets/icons/al-30.png'),
+                                          width: 18,
+                                          height: 18,
+                                        )
+                                      : Container(
+                                          width: 5,
+                                          height: 5,
+                                          decoration: BoxDecoration(
+                                            color: getTimeLeftColor(
+                                                lead['timeLeft']),
+                                            shape: BoxShape.circle,
+                                          ),
                                         ),
-                                      ),
-                                const SizedBox(width: 4),
-                                alarms[1]
-                                    ? const Image(
-                                        image: AssetImage(
-                                            'assets/icons/al-60.png'),
-                                        width: 18,
-                                        height: 18,
-                                      )
-                                    : Container(
-                                        width: 5,
-                                        height: 5,
-                                        decoration: BoxDecoration(
-                                          color: getTimeLeftColor(
-                                              lead['timeLeft']),
-                                          shape: BoxShape.circle,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 3.0),
+                                  child: alarms[1]
+                                      ? const Image(
+                                          image: AssetImage(
+                                              'assets/icons/al-60.png'),
+                                          width: 18,
+                                          height: 18,
+                                        )
+                                      : Container(
+                                          width: 5,
+                                          height: 5,
+                                          decoration: BoxDecoration(
+                                            color: getTimeLeftColor(
+                                                lead['timeLeft']),
+                                            shape: BoxShape.circle,
+                                          ),
                                         ),
-                                      ),
-                                const SizedBox(width: 4),
-                                alarms[2]
-                                    ? const Image(
-                                        image: AssetImage(
-                                            'assets/icons/al-90.png'),
-                                        width: 18,
-                                        height: 18,
-                                      )
-                                    : Container(
-                                        width: 5,
-                                        height: 5,
-                                        decoration: BoxDecoration(
-                                          color: getTimeLeftColor(
-                                              lead['timeLeft']),
-                                          shape: BoxShape.circle,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 3.0),
+                                  child: alarms[2]
+                                      ? const Image(
+                                          image: AssetImage(
+                                              'assets/icons/al-90.png'),
+                                          width: 18,
+                                          height: 18,
+                                        )
+                                      : Container(
+                                          width: 5,
+                                          height: 5,
+                                          decoration: BoxDecoration(
+                                            color: getTimeLeftColor(
+                                                lead['timeLeft']),
+                                            shape: BoxShape.circle,
+                                          ),
                                         ),
-                                      ),
-                                const SizedBox(width: 4),
-                                alarms[3]
-                                    ? const Image(
-                                        image: AssetImage(
-                                            'assets/icons/al-120.png'),
-                                        width: 18,
-                                        height: 18,
-                                      )
-                                    : Container(
-                                        width: 5,
-                                        height: 5,
-                                        decoration: BoxDecoration(
-                                          color: getTimeLeftColor(
-                                              lead['timeLeft']),
-                                          shape: BoxShape.circle,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 3.0),
+                                  child: alarms[3]
+                                      ? const Image(
+                                          image: AssetImage(
+                                              'assets/icons/al-120.png'),
+                                          width: 18,
+                                          height: 18,
+                                        )
+                                      : Container(
+                                          width: 5,
+                                          height: 5,
+                                          decoration: BoxDecoration(
+                                            color: getTimeLeftColor(
+                                                lead['timeLeft']),
+                                            shape: BoxShape.circle,
+                                          ),
                                         ),
-                                      ),
+                                ),
                               ],
                             ),
                           ),
@@ -824,15 +864,14 @@ class LeadCard extends StatelessWidget {
     List<String> parts = timeLeft.split(':');
     int hours = int.parse(parts[0]);
     int minutes = int.parse(parts[1]);
-
     if (hours == 0 && minutes <= 30) {
-      return const Color(0xFFe71d19); // Red for 30 minutes or less
-    } else if (hours == 0 && minutes <= 60) {
-      return const Color(0xFFFFA500); // Orange for 1 hour or less
-    } else if (hours == 0 && minutes <= 90) {
-      return const Color(0xFFFFFF00); // Yellow for 1:30 or less
+      return const Color(0xFFe71d19); // Red
+    } else if (hours == 1 && minutes == 30) {
+      return Color.fromARGB(255, 244, 140, 28); //orange
+    } else if (hours == 1 && minutes == 00) {
+      return const Color(0xFFFFDE59); // Yellow
     } else {
-      return const Color(0xFF35ba51); // Green for 2 hours or more
+      return const Color(0xFF35ba51); // Green
     }
   }
 }
